@@ -22,7 +22,7 @@ class EMail::Client
   LOG_FORMATTER = Log::Formatter.new do |entry, io|
     io << entry.timestamp.to_s("%Y/%m/%d %T") << " [" << entry.source << "/" << Process.pid << "] "
     io << entry.severity << " " << entry.message
-    if entry.context.size > 0
+    if !entry.context.empty?
       io << " -- " << entry.context
     end
     if ex = entry.exception
